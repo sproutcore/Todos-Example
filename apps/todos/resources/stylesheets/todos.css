@@ -1,0 +1,161 @@
+@import "compass/css3";
+
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* App CSS */
+body, html {
+  color: #777;
+  background-color: #F2F4F5;
+}
+
+.sc-view {
+  position: relative;
+  overflow: visible;
+}
+
+$width: 600px;
+$border: 1px solid #bbb;
+
+#todos {
+  @include box-shadow(rgba(0,0,0,0.6), 0, 0, 1px);
+  @include border-radius(8px);
+
+  $padding: 10px;
+  $header-height: 20px;
+
+  position: absolute;
+  width: 600px;
+  left: 50%;
+  margin-top: 38px;
+  border: $border;
+  margin-left: -300px;
+  background-color: #fff;
+  padding: ($header-height + $padding * 2) $padding $padding;
+
+  div.remaining {
+    overflow: hidden;
+    width: 100%;
+    padding: 5px $padding;
+    margin: $padding ($padding * -1);
+    background-color: #eee;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    line-height: 25px;
+
+    button {
+      float: right;
+      padding: 5px;
+    }
+  }
+
+  input[type='text'] {
+    @include border-radius(5px);
+    @include box-shadow(rgba(0,0,0,0.6), 0, 0, 10px, -2px);
+    color: #999;
+    background-color: rgb(240,240,240);
+    width: $width - ($padding) - 2px;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+    padding: 5px;
+    border: $border;
+    font-weight: 500;
+
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+  }
+
+  h1 {
+    @include border-top-radius(8px);
+    @include linear-gradient(color-stops(white, rgb(244,244,244) 49%, rgb(237,237,237) 51%, #dedede));
+    @include text-shadow(white, 0, 1px, 1px);
+
+    font-size: 15px;
+    position: absolute;
+    width: $width;
+    height: $header-height;
+    color: rgb(83,86,94);
+    top: 0;
+    left: 0;
+    padding: ($padding / 2) $padding;
+    border-bottom: $border;
+  }
+
+  label {
+    font-size: 15px;
+
+    input {
+      margin-top: 6px;
+      margin-right: 5px;
+      float: left;
+    }
+  }
+
+  label.done-label {
+    margin-left: 6px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  input[type=checkbox] {
+    float: left;
+    margin-top: 5px;
+    margin-right: 7px;
+  }
+
+  ul {
+    margin-left: 6px;
+    li {
+      margin-bottom: 5px;
+    }
+
+    li.done {
+      text-decoration: line-through;
+    }
+  }
+}
+
