@@ -55,14 +55,7 @@ Todos.clearCompletedView = SC.TemplateView.create({
 });
 
 Todos.todoListView = SC.TemplateCollectionView.create({
-  contentBinding: 'Todos.todoListController',
-
-  itemView: SC.TemplateView.extend({
-    isDoneDidChange: function() {
-      var isDone = this.getPath('content.isDone');
-      this.$().toggleClass('done', isDone);
-    }.observes('.content.isDone')
-  })
+  contentBinding: 'Todos.todoListController'
 });
 
 Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {

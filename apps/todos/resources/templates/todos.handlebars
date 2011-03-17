@@ -19,7 +19,7 @@
   </label>
 {{/view}}
 
-{{#collection "Todos.todoListView"}}
+{{#collection "Todos.todoListView" itemClassBinding="content.isDone"}}
   <label class='done'>
     {{#view "Todos.CheckboxView"}}
       <input class="check" type="checkbox">
