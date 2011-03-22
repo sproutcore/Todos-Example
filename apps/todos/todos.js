@@ -37,7 +37,7 @@ Todos.todoListController = SC.ArrayController.create({
   }.property('@each.isDone')
 });
 
-Todos.CreateTodoView = SC.TemplateView.create(SC.TextFieldSupport, {
+Todos.createTodoView = SC.TemplateView.create(SC.TextFieldSupport, {
   insertNewline: function() {
     var value = this.get('value');
 
