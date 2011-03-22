@@ -1,16 +1,14 @@
 <h1>Todos</h1>
 
-{{#view "Todos.CreateTodoView"}}
-  <input id="new-todo" type="text" placeholder="Wot?" >
+{{#view "Todos.createTodoView"}}
+  <input id="new-todo" type="text" placeholder="What to do?">
 {{/view}}
 
-{{#view "Todos.statsView"}}
-  <div class="remaining">
-    {{#view "Todos.clearCompletedView"}}
-      <button>Clear Completed Todos</button>
-    {{/view}}
-    {{bind "displayRemaining"}} remaining.
-  </div>
+{{#view "Todos.statsView" id="stats"}}
+  {{#view "Todos.clearCompletedTodos"}}
+    <button>Clear Completed Todos</button>
+  {{/view}}
+  {{bind "displayRemaining"}}
 {{/view}}
 
 {{#view "Todos.markAllDoneView"}}
@@ -20,11 +18,11 @@
 {{/view}}
 
 {{#collection "Todos.todoListView" itemClassBinding="content.isDone"}}
-  <label class='done'>
+  <label>
     {{#view "Todos.CheckboxView"}}
-      <input class="check" type="checkbox">
+      <input type="checkbox" class="check">
     {{/view}}
-    <div class="todo-content">{{content/title}}</div>
+    {{content.title}}
   </label>
 {{/collection}}
 

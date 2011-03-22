@@ -75,7 +75,7 @@ $border: 1px solid #bbb;
   background-color: #fff;
   padding: ($header-height + $padding * 2) $padding $padding;
 
-  div.remaining {
+  #stats {
     overflow: hidden;
     width: 100%;
     padding: 5px $padding;
@@ -84,6 +84,10 @@ $border: 1px solid #bbb;
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
     line-height: 25px;
+
+    .remaining {
+      float: left;
+    }
 
     button {
       float: right;
