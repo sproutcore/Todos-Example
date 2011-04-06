@@ -76,7 +76,7 @@ Todos.markAllDoneView = SC.TemplateView.create(SC.CheckboxSupport, {
   valueBinding: 'Todos.todoListController.allAreDone'
 });
 
-jQuery(document).ready(function() {
+SC.ready(function() {
   Todos.mainPane = SC.TemplatePane.append({
     layerId: 'todos',
     templateName: 'todos'
