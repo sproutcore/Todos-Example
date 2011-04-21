@@ -37,7 +37,7 @@ Todos.todoListController = SC.ArrayController.create({
   }.property('@each.isDone')
 });
 
-Todos.createTodoView = SC.TemplateView.create(SC.TextFieldSupport, {
+Todos.CreateTodoView = SC.TemplateView.extend(SC.TextFieldSupport, {
   insertNewline: function() {
     var value = this.get('value');
 
@@ -48,13 +48,13 @@ Todos.createTodoView = SC.TemplateView.create(SC.TextFieldSupport, {
   }
 });
 
-Todos.clearCompletedView = SC.TemplateView.create({
+Todos.ClearCompletedView = SC.TemplateView.extend({
   mouseUp: function() {
     Todos.todoListController.clearCompletedTodos();
   }
 });
 
-Todos.todoListView = SC.TemplateCollectionView.create({
+Todos.TodoListView = SC.TemplateCollectionView.extend({
   contentBinding: 'Todos.todoListController'
 });
 
@@ -62,7 +62,7 @@ Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {
   valueBinding: '.parentView.content.isDone'
 });
 
-Todos.statsView = SC.TemplateView.create({
+Todos.StatsView = SC.TemplateView.extend({
   remainingBinding: 'Todos.todoListController.remaining',
 
   displayRemaining: function() {
@@ -72,7 +72,7 @@ Todos.statsView = SC.TemplateView.create({
   }.property('remaining').cacheable()
 });
 
-Todos.markAllDoneView = SC.TemplateView.create(SC.CheckboxSupport, {
+Todos.MarkAllDoneView = SC.TemplateView.extend(SC.CheckboxSupport, {
   valueBinding: 'Todos.todoListController.allAreDone'
 });
 
