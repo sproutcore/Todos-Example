@@ -4,13 +4,11 @@
   <input id="new-todo" type="text" placeholder="What's next?" >
 {{/view}}
 
-{{#view Todos.StatsView}}
-  <div class="remaining">
-    {{#view Todos.ClearCompletedView}}
-      <button>Clear Completed Todos</button>
-    {{/view}}
-    {{displayRemaining}} remaining.
-  </div>
+{{#view Todos.StatsView id="stats"}}
+  {{#view Todos.ClearCompletedView}}
+    <button>Clear Completed Todos</button>
+  {{/view}}
+  {{displayRemaining}} remaining.
 {{/view}}
 
 {{#view Todos.MarkAllDoneView}}
