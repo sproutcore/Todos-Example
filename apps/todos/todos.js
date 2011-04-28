@@ -55,7 +55,7 @@ Todos.ClearCompletedView = SC.TemplateView.extend({
 });
 
 Todos.TodoListView = SC.TemplateCollectionView.extend({
-  contentBinding: 'Todos.todoListController'
+  contentBinding: 'Todos.todoListController.content'
 });
 
 Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {
