@@ -49,7 +49,14 @@ Todos.CreateTodoView = SC.TemplateView.extend(SC.TextFieldSupport, {
 });
 
 Todos.ClearCompletedView = SC.TemplateView.extend({
+  classNames: ['button'],
+
+  mouseDown: function() {
+    this.set('isActive', YES);
+  },
+
   mouseUp: function() {
+    this.set('isActive', NO);
     Todos.todoListController.clearCompletedTodos();
   }
 });

@@ -5,8 +5,8 @@
 {{/view}}
 
 {{#view Todos.StatsView id="stats"}}
-  {{#view Todos.ClearCompletedView}}
-    <button>Clear Completed Todos</button>
+  {{#view Todos.ClearCompletedView classBinding="isActive"}}
+    Clear Completed Todos
   {{/view}}
   {{displayRemaining}} remaining.
 {{/view}}
