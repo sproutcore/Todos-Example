@@ -49,8 +49,31 @@ Todos.CreateTodoView = SC.TemplateView.extend(SC.TextFieldSupport, {
 });
 
 Todos.ClearCompletedView = SC.TemplateView.extend({
+  classNames: ['button'],
+
+  mouseDown: function() {
+    this.set('isActive', YES);
+  },
+
   mouseUp: function() {
+    this.set('isActive', NO);
     Todos.todoListController.clearCompletedTodos();
+  },
+
+  touchStart: function(touch) {
+    this.mouseDown(touch);
+    touch.allowDefault();
+    return true;
+  },
+
+  touchesDragged: function(evt, touch) {
+    evt.allowDefault();
+    return true;
+  },
+
+  touchEnd: function(touch) {
+    this.mouseUp(touch);
+    return true;
   }
 });
 
@@ -59,7 +82,15 @@ Todos.TodoListView = SC.TemplateCollectionView.extend({
 });
 
 Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {
-  valueBinding: '.parentView.content.isDone'
+  classNames: ['checkbox'],
+
+  valueBinding: '.parentView.content.isDone',
+
+  touchStart: function(touch) { },
+
+  touchEnd: function(touch) {
+    this.toggleProperty('value');
+  }
 });
 
 Todos.StatsView = SC.TemplateView.extend({
@@ -73,12 +104,32 @@ Todos.StatsView = SC.TemplateView.extend({
 });
 
 Todos.MarkAllDoneView = SC.TemplateView.extend(SC.CheckboxSupport, {
-  valueBinding: 'Todos.todoListController.allAreDone'
+  classNames: ['checkbox'],
+
+  valueBinding: 'Todos.todoListController.allAreDone',
+
+  touchStart: function(touch) { },
+
+  touchEnd: function(touch) {
+    this.toggleProperty('value');
+  }
 });
 
 SC.ready(function() {
   Todos.mainPane = SC.TemplatePane.append({
     layerId: 'todos',
-    templateName: 'todos'
+    templateName: 'todos',
+
+    touchStart: function(touch) {
+      touch.allowDefault();
+    },
+
+    touchesDragged: function(evt, touches) {
+      evt.allowDefault();
+    },
+
+    touchEnd: function(touch) {
+      touch.allowDefault();
+    }
   });
 });
