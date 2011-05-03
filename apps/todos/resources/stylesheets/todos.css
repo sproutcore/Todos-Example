@@ -73,11 +73,11 @@ $border: 1px solid #bbb;
       color: #000;
       float: right;
       padding: 0 5px;
-    
+
       &:hover {
         @include linear-gradient(color-stops(#FFF 1%, #E2E2E2, #F7F7F7, #FCFCFC));
       }
-      
+
       &.is-active {
         @include linear-gradient(color-stops(#EFEFEF 1%, #D3D3D3, #E8E8E8, #EDEDED));
       }
@@ -117,33 +117,31 @@ $border: 1px solid #bbb;
     border-bottom: $border;
   }
 
-  label {
-    font-size: 15px;
-
-    input {
-      margin-top: 6px;
-      margin-right: 5px;
-      float: left;
-    }
-  }
-
   label.done-label {
-    margin-left: 6px;
     display: block;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 6px;
     font-weight: bold;
   }
 
-  input[type=checkbox] {
+  .checkbox {
     float: left;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-right: 7px;
+  }
+
+  .todo-content {
+    float: left;
+    height: 22px;
+    line-height: 22px;
   }
 
   ul {
     margin-left: 6px;
+
     li {
       margin-bottom: 5px;
+      clear: left;
     }
 
     li.is-done {

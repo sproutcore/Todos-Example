@@ -66,6 +66,8 @@ Todos.TodoListView = SC.TemplateCollectionView.extend({
 });
 
 Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {
+  classNames: ['checkbox'],
+
   valueBinding: '.parentView.content.isDone'
 });
 
@@ -80,6 +82,8 @@ Todos.StatsView = SC.TemplateView.extend({
 });
 
 Todos.MarkAllDoneView = SC.TemplateView.extend(SC.CheckboxSupport, {
+  classNames: ['checkbox'],
+
   valueBinding: 'Todos.todoListController.allAreDone'
 });
 
