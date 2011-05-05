@@ -5,9 +5,29 @@
 
 /*globals Todos*/
 
-Todos = SC.Application.create();
+Todos = SC.Application.create({
+  store: SC.Store.create().from(SC.Record.fixtures)
+});
 
-Todos.Todo = SC.Object.extend({ title: null, isDone: false });
+Todos.Todo = SC.Record.extend({
+  title: SC.Record.attr(String),
+  isDone: SC.Record.attr(Boolean, { defaultValue: NO })
+});
+
+Todos.Todo.FIXTURES = [
+
+    { "guid": "todo-1",
+      "title": "Build my first SproutCore app",
+      "isDone": false },
+
+    { "guid": "todo-2",
+      "title": "Build a really awesome SproutCore app",
+      "isDone": false },
+
+    { "guid": "todo-3",
+      "title": "Next, the world!",
+      "isDone": false }
+];
 
 Todos.CreateTodoView = SC.TextField.extend({
   insertNewline: function() {
@@ -42,9 +62,7 @@ Todos.todoListController = SC.ArrayController.create({
   // to the array.
 
   createTodo: function(title) {
-    var todo = Todos.Todo.create({ title: title });
-
-    this.pushObject(todo);
+    Todos.store.createRecord(Todos.Todo, { title: title });
   },
 
   remaining: function() {
@@ -72,5 +90,8 @@ SC.ready(function() {
     layerId: 'todos',
     templateName: 'todos'
   });
+
+  var todos = Todos.store.find(Todos.Todo)
+  Todos.todoListController.set('content', todos);
 });
 
