@@ -1,7 +1,6 @@
 <h1>Todos</h1>
-
 {{#view Todos.CreateTodoView}}
-  <input id="new-todo" type="text" placeholder="What's next?" >
+  <input id="new-todo" type="text" placeholder="What needs to be done?" />
 {{/view}}
 
 {{#view Todos.StatsView id="stats"}}
@@ -12,17 +11,11 @@
 {{/view}}
 
 {{#view Todos.MarkAllDoneView}}
-  <label class='done-label'>
+  <label>
     <input class="mark-all-done" type="checkbox"> Mark All as Done
   </label>
 {{/view}}
 
 {{#collection Todos.TodoListView itemClassBinding="content.isDone"}}
-  <label class='done'>
-    {{#view Todos.CheckboxView}}
-      <input class="check" type="checkbox">
-    {{/view}}
-    <div class="todo-content">{{content.title}}</div>
-  </label>
+    {{view Todos.CheckboxView}}
 {{/collection}}
-
