@@ -117,35 +117,27 @@ $border: 1px solid #bbb;
     border-bottom: $border;
   }
 
-  label.done-label {
-    display: block;
-    margin-bottom: 10px;
-    margin-left: 6px;
-    font-weight: bold;
-  }
-
   .checkbox {
-    float: left;
-    margin-top: 2px;
-    margin-right: 7px;
-  }
-
-  .todo-content {
-    float: left;
-    height: 22px;
-    line-height: 22px;
+    input[type="checkbox"] {
+      margin-right: 7px;
+    }
   }
 
   ul {
-    margin-left: 6px;
+    margin-left: 0px;
+    margin-right: 0px;
 
     li {
-      margin-bottom: 5px;
-      clear: left;
+      padding: 5px;
+      
+      &.is-done {
+        color: #B7B7B7;
+        text-decoration: line-through;
+      }
     }
 
-    li.is-done {
-      text-decoration: line-through;
+    li:nth-child(odd) {
+      background-color: #F7F7F7;
     }
   }
 }
