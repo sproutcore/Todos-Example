@@ -103,7 +103,7 @@ SC.ready(function() {
 
 Todos.todoListController = SC.ArrayController.create({
   // Initialize the array controller with an empty array. 
-  content: [Todos.Todo.create({ title: 'A thing to do' }), Todos.Todo.create({ title: 'Another thing to do' }), Todos.Todo.create({ title: 'Not a thing to do' })],
+  content: [],
 
   // Creates a new todo with the passed title, then adds it
   // to the array.
