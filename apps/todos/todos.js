@@ -9,7 +9,7 @@ Todos = SC.Application.create();
 
 Todos.Todo = SC.Object.extend({ title: null, isDone: false });
 
-Todos.CreateTodoView = SC.TemplateView.extend(SC.TextFieldSupport, {
+Todos.CreateTodoView = SC.TextField.extend({
   insertNewline: function() {
     var value = this.get('value');
 
@@ -20,20 +20,9 @@ Todos.CreateTodoView = SC.TemplateView.extend(SC.TextFieldSupport, {
   }
 });
 
-Todos.CheckboxView = SC.TemplateView.extend(SC.CheckboxSupport, {
-  classNames: ['checkbox'],
-
-  template: SC.Handlebars.compile('<label><input type="checkbox">{{title}}</label>'),
-
+Todos.MarkDoneView = SC.Checkbox.extend({
   titleBinding: '.parentView.content.title',
-
-  valueBinding: '.parentView.content.isDone',
-  
-  touchStart: function(touch) { },
- 
-  touchEnd: function(touch) {
-    this.toggleProperty('value');
-  }
+  valueBinding: '.parentView.content.isDone'
 });
 
 Todos.StatsView = SC.TemplateView.extend({
@@ -45,64 +34,8 @@ Todos.StatsView = SC.TemplateView.extend({
   }.property('remaining').cacheable()
 });
 
-Todos.ClearCompletedView = SC.TemplateView.extend({  
-  classNames: ['button'],
- 
-  // Setting isActive to true will trigger the classBinding and add
-  // 'is-active' to our layer's class names.
-  mouseDown: function() {
-    this.set('isActive', true);
-  },
- 
-  // Setting isActive to false will remove 'is-active' from our
-  // layer's class names.
-  mouseUp: function() {
-    this.set('isActive', false);
-    Todos.todoListController.clearCompletedTodos();
-  },
-  
-  touchStart: function(touch) {
-    this.mouseDown(touch);
-  },
-
-  touchEnd: function(touch) {
-    this.mouseUp(touch);
-  }
-});
-
-Todos.MarkAllDoneView = SC.TemplateView.extend(SC.CheckboxSupport, {
-  classNames: ['checkbox'],
-
-  valueBinding: 'Todos.todoListController.allAreDone',
-  
-  touchStart: function(touch) { },
- 
-  touchEnd: function(touch) {
-    this.toggleProperty('value');
-  }
-});
-
-SC.ready(function() {
-  Todos.mainPane = SC.TemplatePane.append({
-    layerId: 'todos',
-    templateName: 'todos',
-    
-    touchStart: function(touch) {
-      touch.allowDefault();
-    },
-
-    touchesDragged: function(evt, touches) {
-      evt.allowDefault();
-    },
-
-    touchEnd: function(touch) {
-      touch.allowDefault();
-    }
-  });
-});
-
 Todos.todoListController = SC.ArrayController.create({
-  // Initialize the array controller with an empty array. 
+  // Initialize the array controller with an empty array.
   content: [],
 
   // Creates a new todo with the passed title, then adds it
@@ -113,19 +46,19 @@ Todos.todoListController = SC.ArrayController.create({
 
     this.pushObject(todo);
   },
-  
+
   remaining: function() {
     return this.filterProperty('isDone', false).get('length');
   }.property('@each.isDone'),
-  
+
   clearCompletedTodos: function() {
     this.filterProperty('isDone', true).forEach(this.removeObject, this);
   },
-  
+
   allAreDone: function(key, value) {
     if (value !== undefined) {
       this.setEach('isDone', value);
-      
+
       return value;
     } else {
       return this.get('length') && this.everyProperty('isDone', true);
@@ -134,6 +67,10 @@ Todos.todoListController = SC.ArrayController.create({
 
 });
 
-Todos.TodoListView = SC.TemplateCollectionView.extend({
-  contentBinding: 'Todos.todoListController'
+SC.ready(function() {
+  Todos.mainPane = SC.TemplatePane.append({
+    layerId: 'todos',
+    templateName: 'todos',
+  });
 });
+

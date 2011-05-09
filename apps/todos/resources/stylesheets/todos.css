@@ -53,6 +53,11 @@ $border: 1px solid #bbb;
   background-color: #fff;
   padding: ($header-height + $padding * 2) $padding $padding;
 
+  .mark-all-done label {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+
   #stats {
     overflow: hidden;
     width: 100%;
@@ -67,7 +72,7 @@ $border: 1px solid #bbb;
       float: left;
     }
 
-    .button {
+    .sc-button {
       @include linear-gradient(color-stops(#F9F9F9 1%, #DDD, #F2F2F2, #F7F7F7));
       border: 1px solid #828282;
       color: #000;
@@ -117,7 +122,7 @@ $border: 1px solid #bbb;
     border-bottom: $border;
   }
 
-  .checkbox {
+  .sc-checkbox {
     input[type="checkbox"] {
       margin-right: 7px;
     }

@@ -4,18 +4,14 @@
 {{/view}}
 
 {{#view Todos.StatsView id="stats"}}
-  {{#view Todos.ClearCompletedView classBinding="isActive"}}
+  {{#view SC.Button classBinding="isActive" target="Todos.todoListController" action="clearCompletedTodos"}}
     Clear Completed Todos
   {{/view}}
   {{displayRemaining}} remaining.
 {{/view}}
 
-{{#view Todos.MarkAllDoneView}}
-  <label>
-    <input class="mark-all-done" type="checkbox"> Mark All as Done
-  </label>
-{{/view}}
+{{view SC.Checkbox class="mark-all-done" title="Mark All as Done" valueBinding="Todos.todoListController.allAreDone"}}
 
-{{#collection Todos.TodoListView itemClassBinding="content.isDone"}}
-    {{view Todos.CheckboxView}}
+{{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController" itemClassBinding="content.isDone"}}
+  {{view Todos.MarkDoneView}}
 {{/collection}}
