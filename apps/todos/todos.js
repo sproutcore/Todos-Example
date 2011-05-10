@@ -70,7 +70,7 @@ Todos.todoListController = SC.ArrayController.create({
 SC.ready(function() {
   Todos.mainPane = SC.TemplatePane.append({
     layerId: 'todos',
-    templateName: 'todos',
+    templateName: 'todos'
   });
 });
 
