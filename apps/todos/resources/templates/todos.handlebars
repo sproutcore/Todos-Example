@@ -1,4 +1,9 @@
 <h1>Todos</h1>
+
+{{#view SC.Button classBinding="isActive" class="sign-out" target="Todos.userSessionController" action="signOut"}}
+  Sign out
+{{/view}}
+
 {{#view Todos.CreateTodoView}}
   <input id="new-todo" type="text" placeholder="What needs to be done?" />
 {{/view}}
@@ -15,3 +20,5 @@
 {{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController" itemClassBinding="content.isDone"}}
   {{view Todos.MarkDoneView}}
 {{/collection}}
+
+{{view Todos.signInOverlayView}}
