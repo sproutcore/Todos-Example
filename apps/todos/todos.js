@@ -70,7 +70,7 @@ Todos.todoListController = SC.ArrayController.create({
   }.property('@each.isDone'),
 
   clearCompletedTodos: function() {
-    this.filterProperty('isDone', true).forEach(this.removeObject, this);
+    this.filterProperty('isDone', true).forEach(function(todo) { todo.destroy(); });
   },
 
   allAreDone: function(key, value) {
