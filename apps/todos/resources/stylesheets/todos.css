@@ -35,7 +35,11 @@ body, html {
 }
 
 $width: 600px;
+$projects_width: 220px;
 $border: 1px solid #bbb;
+
+$header-height: 20px;
+$padding: 10px;
 
 @mixin sc-button {
   @include linear-gradient(color-stops(#F9F9F9 1%, #DDD, #F2F2F2, #F7F7F7));
@@ -53,19 +57,34 @@ $border: 1px solid #bbb;
   }
 }
 
-#todos {
+#todoList, #projects {
+  h1 {
+    @include border-top-radius(8px);
+    @include linear-gradient(color-stops(white, rgb(244,244,244) 49%, rgb(237,237,237) 51%, #dedede));
+    @include text-shadow(white, 0, 1px, 1px);
+
+    font-size: 15px;
+    position: absolute;
+    width: $width;
+    height: $header-height;
+    color: rgb(83,86,94);
+    top: 0;
+    left: 0;
+    padding: ($padding / 2) $padding;
+    border-bottom: $border;
+  }
+}
+
+#todoList {
   @include box-shadow(rgba(0,0,0,0.6), 0, 0, 1px);
   @include border-radius(8px);
-
-  $padding: 10px;
-  $header-height: 20px;
 
   position: absolute;
   width: $width;
   left: 50%;
   margin-top: 38px;
   border: $border;
-  margin-left: -300px;
+  margin-left: -200px;
   background-color: #fff;
   padding: ($header-height + $padding * 2) $padding $padding;
 
@@ -93,37 +112,9 @@ $border: 1px solid #bbb;
     }
   }
 
-  input[type='text'], input[type='password'] {
-    @include border-radius(5px);
-    @include box-shadow(rgba(0,0,0,0.6), 0, 0, 10px, -2px);
-    color: #999;
-    background-color: rgb(240,240,240);
-    width: $width - ($padding) - 2px;
-    font-size: 30px;
-    font-family: Helvetica, sans-serif;
-    padding: 5px;
-    border: $border;
-    font-weight: 500;
-
-    &::-webkit-input-placeholder {
-      color: #aaa;
-    }
-  }
-
-  h1 {
-    @include border-top-radius(8px);
-    @include linear-gradient(color-stops(white, rgb(244,244,244) 49%, rgb(237,237,237) 51%, #dedede));
-    @include text-shadow(white, 0, 1px, 1px);
-
-    font-size: 15px;
-    position: absolute;
+  .todoList {
     width: $width;
-    height: $header-height;
-    color: rgb(83,86,94);
-    top: 0;
-    left: 0;
-    padding: ($padding / 2) $padding;
-    border-bottom: $border;
+    float: right;
   }
 
   .sc-checkbox {
@@ -156,9 +147,40 @@ $border: 1px solid #bbb;
     right: 10px;
     color: #000;
     text-decoration: underline;
-    cursor: hand;
+    cursor: pointer;
+  }
+}
+
+#projects {
+  @include box-shadow(rgba(0,0,0,0.6), 0, 0, 1px);
+  @include border-radius(8px);
+  width: $projects-width;
+  position: absolute;
+  left: 50%;
+  margin-top: 38px;
+  border: $border;
+  margin-left: -435px;
+  background-color: #fff;
+  padding: ($header-height + $padding * 2) 0 $padding;
+
+  h1 {
+    width: $projects-width - $padding * 2;
   }
 
+  li {
+    padding: 5px $padding;
+    cursor: pointer;
+  }
+
+  li.is-selected {
+    background-color: #eee;
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+#todos {
   .overlay {
     display: table;
     position: fixed;
@@ -200,6 +222,23 @@ $border: 1px solid #bbb;
         overflow: auto;
         width: $width;
       }
+    }
+  }
+
+  input[type='text'], input[type='password'] {
+    @include border-radius(5px);
+    @include box-shadow(rgba(0,0,0,0.6), 0, 0, 10px, -2px);
+    color: #999;
+    background-color: rgb(240,240,240);
+    width: $width - ($padding) - 2px;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+    padding: 5px;
+    border: $border;
+    font-weight: 500;
+
+    &::-webkit-input-placeholder {
+      color: #aaa;
     }
   }
 }

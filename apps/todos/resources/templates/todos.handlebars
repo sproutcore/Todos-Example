@@ -1,24 +1,33 @@
-<h1>Todos</h1>
+<div id="projects">
+  <h1>Projects</h1>
+  {{#collection Todos.projectsCollectionView contentBinding="Todos.projectsListController" itemClassBinding="isSelected"}}
+    {{content.name}}
+  {{/collection}}
+</div>
 
-{{#view SC.Button classBinding="isActive" class="sign-out" target="Todos.userSessionController" action="signOut"}}
-  Sign out
-{{/view}}
+<div id="todoList">
+  <h1>Todos</h1>
 
-{{#view Todos.CreateTodoView}}
-  <input id="new-todo" type="text" placeholder="What needs to be done?" />
-{{/view}}
-
-{{#view Todos.StatsView id="stats"}}
-  {{#view SC.Button classBinding="isActive" target="Todos.todoListController" action="clearCompletedTodos"}}
-    Clear Completed Todos
+  {{#view SC.Button classBinding="isActive" class="sign-out" target="Todos.userSessionController" action="signOut"}}
+    Sign out
   {{/view}}
-  {{displayRemaining}} remaining.
-{{/view}}
 
-{{view SC.Checkbox class="mark-all-done" title="Mark All as Done" valueBinding="Todos.todoListController.allAreDone"}}
+  {{#view Todos.CreateTodoView}}
+    <input id="new-todo" type="text" placeholder="What needs to be done?" />
+  {{/view}}
 
-{{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController" itemClassBinding="content.isDone"}}
-  {{view Todos.MarkDoneView}}
-{{/collection}}
+  {{#view Todos.StatsView id="stats"}}
+    {{#view SC.Button classBinding="isActive" target="Todos.todoListController" action="clearCompletedTodos"}}
+      Clear Completed Todos
+    {{/view}}
+    {{displayRemaining}} remaining.
+  {{/view}}
+
+  {{view SC.Checkbox class="mark-all-done" title="Mark All as Done" valueBinding="Todos.todoListController.allAreDone"}}
+
+  {{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController" itemClassBinding="content.isDone"}}
+    {{view Todos.MarkDoneView}}
+  {{/collection}}
+</div>
 
 {{view Todos.signInOverlayView}}
