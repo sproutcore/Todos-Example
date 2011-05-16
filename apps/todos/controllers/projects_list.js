@@ -1,15 +1,19 @@
-Todos.projectsListController = SC.ArrayController.create({
+Todos.projectsListController = SC.ArrayController.create(SC.SelectionSupport, {
+  allowsMultipleSelection: NO,
+  allowsEmptySelection: NO,
+
   init: function() {
-    this.addObserver('content', function(controller) {
-      var projects = controller.get('content');
-      projects.addObserver('length', function() {
-        var selected = controller.get('selected');
-        if(!selected) {
-          controller.set('selected', projects.firstObject());
-        }
-      });
+    var controller = this;
+    this.addObserver('content.firstObject', function() {
+      if (!this.get('hasSelection')) {
+        this.selectObject(this.get('content.firstObject'));
+      }
     });
   },
+
+  selected: function() {
+    return this.get('selection').firstObject();
+  }.property('selection').cacheable(),
 
   todos: function() {
     var selected = this.get('selected');

@@ -7,8 +7,9 @@ Todos.projectsCollectionView = SC.TemplateCollectionView.extend({
 
       return selected && content && selected === content;
     }.property("selected").cacheable(),
+
     mouseUp: function() {
-      Todos.projectsListController.set('selected', this.get('content'));
+      Todos.projectsListController.selectObject(this.get('content'));
     }
   })
 });
