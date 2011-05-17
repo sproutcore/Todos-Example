@@ -22,7 +22,7 @@ Todos = SC.Application.create();
 // Create an instance of SC.Store, where all of your application
 // data will be stored.
 Todos.store = SC.Store.create({
-  // Use the local storage adapter to persist new records
+  // Use the local storage adapter to persist new records.
   dataSource: 'SC.LocalStorageDataSource',
 
   // Tell the store to automatically save to local storage
@@ -118,7 +118,7 @@ Todos.todoListController = SC.ArrayController.create({
 
       return value;
     } else {
-      // Return true if all todos are done and there is more than zero todos.
+      // Return true if all todos are done and there are more than zero todos.
       return this.get('length') && this.everyProperty('isDone', true);
     }
   }.property('@each.isDone')
