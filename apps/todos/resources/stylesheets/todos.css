@@ -6,6 +6,8 @@
 
 body {
   line-height: 1;
+  font-family: "Lucida Grande", sans-serif;
+  font-size: 13px;
 }
 ol, ul {
   list-style: none;
@@ -38,7 +40,7 @@ $width: 600px;
 $border: 1px solid #bbb;
 
 #todos {
-  @include box-shadow(rgba(0,0,0,0.6), 0, 0, 1px);
+  @include box-shadow(rgba(0,0,0,0.6) 0 0 1px);
   @include border-radius(8px);
 
   $padding: 10px;
@@ -73,18 +75,18 @@ $border: 1px solid #bbb;
     }
 
     .sc-button {
-      @include linear-gradient(color-stops(#F9F9F9 1%, #DDD, #F2F2F2, #F7F7F7));
+      @include background-image(linear-gradient(#F9F9F9 1%, #DDD, #F2F2F2, #F7F7F7));
       border: 1px solid #828282;
       color: #000;
       float: right;
       padding: 0 5px;
 
       &:hover {
-        @include linear-gradient(color-stops(#FFF 1%, #E2E2E2, #F7F7F7, #FCFCFC));
+        @include background-image(linear-gradient(#FFF 1%, #E2E2E2, #F7F7F7, #FCFCFC));
       }
 
       &.is-active {
-        @include linear-gradient(color-stops(#EFEFEF 1%, #D3D3D3, #E8E8E8, #EDEDED));
+        @include background-image(linear-gradient(#EFEFEF 1%, #D3D3D3, #E8E8E8, #EDEDED));
       }
     }
   }
@@ -108,7 +110,7 @@ $border: 1px solid #bbb;
 
   h1 {
     @include border-top-radius(8px);
-    @include linear-gradient(color-stops(white, rgb(244,244,244) 49%, rgb(237,237,237) 51%, #dedede));
+    @include background-image(linear-gradient(color-stops(white, rgb(244,244,244) 49%, rgb(237,237,237) 51%, #dedede)));
     @include text-shadow(white, 0, 1px, 1px);
 
     font-size: 15px;
@@ -129,8 +131,7 @@ $border: 1px solid #bbb;
   }
 
   ul {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 10px 0 2px 0;
 
     li {
       padding: 5px;
