@@ -4,8 +4,6 @@
 // ==========================================================================
 /*globals Todos */
 
-sc_require('todos');
-
 /** @class
 
   This data source serves as an adapter between SproutCore's data store and the
@@ -26,7 +24,7 @@ sc_require('todos');
       return NO;
     };
 
-    Todos.LocalStorageDataSource = SC.DataSource.extend({
+    SC.LocalStorageDataSource = SC.DataSource.extend({
       fetch: warnMethod,
       retrieveRecord: warnMethod,
       createRecord: warnMethod,
@@ -37,8 +35,8 @@ sc_require('todos');
     return;
   }
 
-  Todos.LocalStorageDataSource = SC.DataSource.extend(
-  /** @scope Todos.LocalStorage.prototype */ {
+  SC.LocalStorageDataSource = SC.DataSource.extend(
+  /** @scope SC.LocalStorage.prototype */ {
     /**
       The string to prefix to the key used to store the data in the browser's
       localStorage.
@@ -82,7 +80,7 @@ sc_require('todos');
     },
 
     _keyForRecordType: function(recordType) {
-      var recordTypeKey = recordType.toString().dasherize();
+      var recordTypeKey = recordType.localStorageKey;
       return this.get('storagePrefix')+recordTypeKey;
     },
 
@@ -117,7 +115,15 @@ sc_require('todos');
     },
 
     updateRecord: function(store, storeKey) {
-      return NO ; // return YES if you handled the storeKey
+      var guid = store.idFor(storeKey);
+      var recordType = store.recordTypeFor(storeKey);
+      var data = store.readDataHash(storeKey);
+
+      this._writeRecord(data, recordType, guid);
+      this._writeDataToLocalStorage(recordType);
+
+      store.dataSourceDidComplete(storeKey, null, guid);
+      return YES ; // return YES if you handled the storeKey
     },
 
     _writeRecord: function(hash, recordType, guid) {
@@ -132,7 +138,7 @@ sc_require('todos');
     destroyRecord: function(store, storeKey) {
       var guid = store.idFor(storeKey);
       var recordType = store.recordTypeFor(storeKey);
-      var data = this._dataForRecordType(recordTypeFor);
+      var data = this._dataForRecordType(recordType);
 
       delete data[guid];
 
@@ -160,7 +166,7 @@ sc_require('todos');
     _generateGuid: function(recordType) {
       var data = this._dataForRecordType(recordType);
 
-      return ++data[key].__guid;
+      return ++data.__guid;
     }
   }) ;
 })();
