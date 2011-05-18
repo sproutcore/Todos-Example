@@ -8,6 +8,7 @@
 Todos = SC.Application.create({
   store: SC.Store.create().from(SC.Record.fixtures)
 });
+Todos.store.commitRecordsAutomatically = true;
 
 Todos.Todo = SC.Record.extend({
   title: SC.Record.attr(String),
