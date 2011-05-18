@@ -3,6 +3,10 @@
   {{#collection Todos.projectsCollectionView contentBinding="Todos.projectsListController" itemClassBinding="isSelected"}}
     {{content.name}}
   {{/collection}}
+
+  {{#view Todos.CreateProjectView}}
+    <input id="new-project" type="text" placeholder="New project" />
+  {{/view}}
 </div>
 
 <div id="todoList">

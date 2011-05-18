@@ -88,6 +88,12 @@ $padding: 10px;
   background-color: #fff;
   padding: ($header-height + $padding * 2) $padding $padding;
 
+  input[type="text"], input[type="password"] {
+    width: $width - ($padding) - 2px;
+    font-size: 30px;
+    padding: 5px;
+  }
+
   .mark-all-done label {
     margin-left: 5px;
     font-weight: bold;
@@ -163,6 +169,12 @@ $padding: 10px;
   background-color: #fff;
   padding: ($header-height + $padding * 2) 0 $padding;
 
+  input[type="text"] {
+    font-size: 17px;
+    margin: 15px $padding 10px;
+    padding: 3px;
+  }
+
   h1 {
     width: $projects-width - $padding * 2;
   }
@@ -230,10 +242,7 @@ $padding: 10px;
     @include box-shadow(rgba(0,0,0,0.6), 0, 0, 10px, -2px);
     color: #999;
     background-color: rgb(240,240,240);
-    width: $width - ($padding) - 2px;
-    font-size: 30px;
     font-family: Helvetica, sans-serif;
-    padding: 5px;
     border: $border;
     font-weight: 500;
 

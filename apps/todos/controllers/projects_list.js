@@ -20,5 +20,9 @@ Todos.projectsListController = SC.ArrayController.create(SC.SelectionSupport, {
     if(selected) {
       return selected.get('todos');
     }
-  }.property('selected').cacheable()
+  }.property('selected').cacheable(),
+
+  createProject: function(name) {
+    Todos.store.createRecord(Todos.Project, {name: name});
+  }
 });
